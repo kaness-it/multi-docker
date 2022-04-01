@@ -1,11 +1,11 @@
 version: "3"
 services:
   client:
-    image: "kaness-it/multi-client"
+    image: "kaness/multi-client"
     mem_limit: 128m
     hostname: client
   server:
-    image: "kaness-it/multi-server"
+    image: "kaness/multi-server"
     mem_limit: 128m
     hostname: api
     environment:
@@ -17,14 +17,14 @@ services:
       - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
   worker:
-    image: "kaness-it/multi-worker"
+    image: "kaness/multi-worker"
     mem_limit: 128m
     hostname: worker
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
-    image: "kaness-it/multi-nginx"
+    image: "kaness/multi-nginx"
     mem_limit: 128m
     hostname: nginx
     ports:

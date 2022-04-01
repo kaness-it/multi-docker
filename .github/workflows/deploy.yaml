@@ -10,20 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-      - run: docker build -t kaness-it/react-test -f ./client/Dockerfile.dev ./client
-      - run: docker run -e CI=true kaness-it/react-test npm test
+      - run: docker build -t kaness/react-test -f ./client/Dockerfile.dev ./client
+      - run: docker run -e CI=true kaness/react-test npm test
  
-      - run: docker build -t kaness-it/multi-client ./client
-      - run: docker build -t kaness-it/multi-nginx ./nginx
-      - run: docker build -t kaness-it/multi-server ./server
-      - run: docker build -t kaness-it/multi-worker ./worker
+      - run: docker build -t kaness/multi-client ./client
+      - run: docker build -t kaness/multi-nginx ./nginx
+      - run: docker build -t kaness/multi-server ./server
+      - run: docker build -t kaness/multi-worker ./worker
  
-      - run: docker tag multi-client kaness-it/multi-client:latest
-      - run: docker push kaness-it/multi-client:latest
-
-      - run: docker push kaness-it/multi-nginx-10-14
-      - run: docker push kaness-it/multi-server-10-14
-      - run: docker push kaness-it/multi-worker-10-14
+      - run: docker push kaness/multi-client:latest
+      - run: docker push kaness/multi-nginx-10-14
+      - run: docker push kaness/multi-server-10-14
+      - run: docker push kaness/multi-worker-10-14
  
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
