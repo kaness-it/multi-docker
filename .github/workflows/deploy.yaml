@@ -13,12 +13,14 @@ jobs:
       - run: docker build -t kaness-it/react-test -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true kaness-it/react-test npm test
  
-      - run: docker build -t kaness-it/multi-client-10-14 ./client
-      - run: docker build -t kaness-it/multi-nginx-10-14 ./nginx
-      - run: docker build -t kaness-it/multi-server-10-14 ./server
-      - run: docker build -t kaness-it/multi-worker-10-14 ./worker
+      - run: docker build -t kaness-it/multi-client ./client
+      - run: docker build -t kaness-it/multi-nginx ./nginx
+      - run: docker build -t kaness-it/multi-server ./server
+      - run: docker build -t kaness-it/multi-worker ./worker
  
-      - run: docker push kaness-it/multi-client-10-14
+      - run: docker tag multi-client kaness-it/multi-client:latest
+      - run: docker push kaness-it/multi-client:latest
+
       - run: docker push kaness-it/multi-nginx-10-14
       - run: docker push kaness-it/multi-server-10-14
       - run: docker push kaness-it/multi-worker-10-14
