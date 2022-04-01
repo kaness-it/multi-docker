@@ -18,7 +18,7 @@ jobs:
       - run: docker build -t kaness-it/multi-server-10-14 ./server
       - run: docker build -t kaness-it/multi-worker-10-14 ./worker
  
-      - run: docker push kaness-it/multi-client-10-14
+      - run: docker push kaness-it/multi-client-10-14:latest
       - run: docker push kaness-it/multi-nginx-10-14
       - run: docker push kaness-it/multi-server-10-14
       - run: docker push kaness-it/multi-worker-10-14
